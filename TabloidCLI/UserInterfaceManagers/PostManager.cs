@@ -24,7 +24,6 @@ namespace TabloidCLI.UserInterfaceManagers
         public IUserInterfaceManager Execute()
         {
             throw new NotImplementedException();
-
         }
 
        
