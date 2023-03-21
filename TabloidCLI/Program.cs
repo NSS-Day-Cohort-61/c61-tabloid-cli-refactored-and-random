@@ -7,6 +7,7 @@ namespace TabloidCLI
     {
         static void Main(string[] args)
         {
+            Console.BackgroundColor = ConsoleColor.Magenta;
             Console.WriteLine("Happy Greetings, Salutations and any other permiation of a pleasantry!");
             // MainMenuManager implements the IUserInterfaceManager interface
             IUserInterfaceManager ui = new MainMenuManager();
