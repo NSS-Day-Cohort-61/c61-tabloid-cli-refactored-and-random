@@ -9,9 +9,7 @@ namespace TabloidCLI.Repositories
 {
     internal class JournalRepository : DatabaseConnector, IRepository<Journal>
     {
-        public JournalRepository(string connectionString) : base(connectionString)
-        {
-        }
+        public JournalRepository(string connectionString) : base(connectionString){}
 
         public void Delete(int id)
         {
