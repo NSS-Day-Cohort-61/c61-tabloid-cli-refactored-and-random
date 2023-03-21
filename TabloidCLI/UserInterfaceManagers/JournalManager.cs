@@ -16,16 +16,12 @@ namespace TabloidCLI.UserInterfaceManagers
         private string _connectionString;
 
         public JournalManager(IUserInterfaceManager parentUI, string connectionString)
-    {
+        {
             _parentUI = parentUI;
             _journalRepository = new JournalRepository(connectionString);
             _connectionString = connectionString;
-
         }
     
-    
-
-        
         public IUserInterfaceManager Execute()
         {
             throw new NotImplementedException();
