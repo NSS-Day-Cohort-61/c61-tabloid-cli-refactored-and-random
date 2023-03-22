@@ -43,6 +43,49 @@ namespace TabloidCLI
         {
             throw new NotImplementedException();
         }
+        public List<Tag> GetbyPost(int id)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT 
+                                        pt.id AS posttagId,
+                                        pt.PostId AS posttagPostId,
+                                        pt.TagId AS posttagTagId,
+                                        p.Id as postId,
+                                        t.Id AS tagId,
+                                        t.Name AS tagName
+                                        FROM PostTag pt
+                                        LEFT JOIN Post p on pt.PostId = p.Id
+                                        Left JOIN Tag t on pt.TagId = t.Id
+                                            WHERE p.id = @id";
+
+                    cmd.Parameters.AddWithValue("@id", id);
+                    List<Tag> postTags = new List<Tag>();
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+
+                            Tag tag = new Tag
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("tagId")),
+                                Name = reader.GetString(reader.GetOrdinal("tagName"))
+                                
+                            };
+                        postTags.Add(tag);
+                        }
+                    
+
+                    reader.Close();
+
+                    return postTags;
+                }
+            }
+        }
+    
 
         public void Insert(Tag tag)
         {

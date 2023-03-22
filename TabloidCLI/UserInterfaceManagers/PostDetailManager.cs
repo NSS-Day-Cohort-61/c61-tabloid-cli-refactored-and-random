@@ -15,6 +15,7 @@ namespace TabloidCLI.UserInterfaceManagers
         private PostRepository _postRepository;
         private TagRepository _tagRepository;
         private int _postId;
+        private string _connectionString;
 
         public PostDetailManager(IUserInterfaceManager parentUI, string connectionString, int postId)
         {
@@ -23,6 +24,7 @@ namespace TabloidCLI.UserInterfaceManagers
             _postRepository = new PostRepository(connectionString);
             _tagRepository = new TagRepository(connectionString);
             _postId = postId;
+            _connectionString = connectionString;
         }
         public IUserInterfaceManager Execute()
         {
@@ -48,8 +50,7 @@ namespace TabloidCLI.UserInterfaceManagers
                     RemoveTag();
                     return this;
                 case "4":
-                    ;
-                    return this;
+                    return new NoteManager(this, _connectionString, _postId);
                 case "0":
                     return _parentUI;
                 default:
@@ -61,10 +62,17 @@ namespace TabloidCLI.UserInterfaceManagers
         private void View()
         {
             Post post = _postRepository.Get(_postId);
+            List<Tag> tags = _tagRepository.GetbyPost(_postId);
+
             Console.WriteLine($"Title: {post.Title}");
             Console.WriteLine($"Url: {post.Url}");
             Console.WriteLine($"Publish Date: {post.PublishDateTime}");
-         
+            Console.WriteLine($"Tags: ");
+         foreach (Tag t in tags)
+            {
+                Console.WriteLine($"{t.Name}");
+            }
+
             Console.WriteLine();
         }
 
