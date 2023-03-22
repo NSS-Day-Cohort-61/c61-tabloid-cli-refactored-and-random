@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
 using TabloidCLI.Models;
@@ -88,6 +89,11 @@ namespace TabloidCLI.Repositories
         }
 
         public void Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GetByBlog(Post post)
         {
             throw new NotImplementedException();
         }

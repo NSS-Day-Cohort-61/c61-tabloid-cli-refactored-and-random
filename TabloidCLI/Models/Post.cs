@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -14,3 +15,4 @@ namespace TabloidCLI.Models
         public Blog Blog { get; set; }
     }
 }
+
