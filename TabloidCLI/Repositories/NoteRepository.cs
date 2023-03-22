@@ -12,7 +12,17 @@ namespace TabloidCLI
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            using(SqlConnection conn = Connection);
+            {
+                Connection.Open();
+                using (SqlCommand cmd = Connection.CreateCommand())
+                {
+                    cmd.CommandText = @"DELETE FROM Note WHERE Id = @id";
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         public Note Get(int id)
@@ -57,26 +67,21 @@ namespace TabloidCLI
 
         public void Insert(Note note)
         {
-            /*
             using (SqlConnection conn = Connection)
             {
                 conn.Open();
                 using (SqlCommand cmd = conn.CreateCommand())
                 { 
                     cmd.CommandText = @"INSERT INTO Note (Title, Content,CreateDateTime, PostId)
-                                        VALUES (@Title, @Content , @CreateDateTime , @PostId)";
+                                        VALUES (@Title, @Content , @CreateDateTime, @PostId)";
                     cmd.Parameters.AddWithValue("@Title", note.Title);
                     cmd.Parameters.AddWithValue("@Content", note.Content);
                     cmd.Parameters.AddWithValue("@CreateDateTime", note.CreateDateTime);
                     cmd.Parameters.AddWithValue("@PostId", note.Post);
-                    cmd.ExecuteNonQuery();
+                    int id = (int)cmd.ExecuteNonQuery();
+                    note.Id = id;
                 }
             }
-            */
-            {
-                throw new NotImplementedException();
-            }
-
         }
 
         public void Update(Note entry)
