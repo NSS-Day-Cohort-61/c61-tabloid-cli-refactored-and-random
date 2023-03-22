@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
 using TabloidCLI.Models;
@@ -15,7 +14,7 @@ namespace TabloidCLI.Repositories
             throw new NotImplementedException();
         }
 
-        public Post Get(int id)
+        public Post GetByBlog(int id)
         {
             throw new NotImplementedException();
         }
@@ -93,7 +92,7 @@ namespace TabloidCLI.Repositories
             throw new NotImplementedException();
         }
 
-        public void GetByBlog(Post post)
+        public Post Get(int id)
         {
             throw new NotImplementedException();
         }
