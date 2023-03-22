@@ -71,12 +71,13 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void ViewBlogPosts()
         {
-            List<Post> posts = _postRepository.GetByBlog(_blogId);
-            foreach (Post post in posts)
-            {
-                Console.WriteLine(post);
-            }
-            Console.WriteLine();
+            throw new NotImplementedException();
+            //List<Post> posts = _postRepository.GetByBlog(_blogId);
+            //foreach (Post post in posts)
+            //{
+            //    Console.WriteLine(post);
+            //}
+            //Console.WriteLine();
         }
 
         private void AddTag()
