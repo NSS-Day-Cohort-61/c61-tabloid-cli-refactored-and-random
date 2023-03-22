@@ -67,6 +67,7 @@ namespace TabloidCLI.UserInterfaceManagers
                 Title = Title,
                 Content = Content,
                 CreateDateTime = DateTime.Now,
+                Post = _PostIdSelected
             };
 
             _noteRepository.Insert(newNote);
