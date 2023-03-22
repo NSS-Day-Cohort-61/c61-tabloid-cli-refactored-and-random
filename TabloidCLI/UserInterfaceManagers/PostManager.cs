@@ -172,7 +172,7 @@ namespace TabloidCLI.UserInterfaceManagers
             {
                 return;
             }
-            Console.WriteLine(postToEdit.Author.Id);
+          
             Console.WriteLine();
             Console.Write("New title (blank to leave unchanged: ");
             string title = Console.ReadLine();
