@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using TabloidCLI.Models;
+using TabloidCLI.Repositories;
 
 namespace TabloidCLI.UserInterfaceManagers
 {
@@ -9,22 +10,26 @@ namespace TabloidCLI.UserInterfaceManagers
         private readonly IUserInterfaceManager _parentUI;
         private NoteRepository _noteRepository;
         private string _connectionString;
-        private int _PostIdSelected;
+        private PostRepository _Post;
+        private int _postId;
+
 
         public NoteManager(IUserInterfaceManager parentUI, string connectionString, int PostId)
         {
             _parentUI = parentUI;
             _noteRepository = new NoteRepository(connectionString);
             _connectionString = connectionString;
-            _PostIdSelected = PostId;
+            _Post = new PostRepository(connectionString);
+            _postId = PostId;
         }
 
         public IUserInterfaceManager Execute()
         {
             Console.WriteLine("Note Menu");
-            Console.WriteLine(" 1) List all Notes");
+            Console.WriteLine(" 1) List Notes");
             Console.WriteLine(" 2) Add a Note");
-            Console.WriteLine(" 3) Delete a Note");
+            Console.WriteLine(" 3) Remove a Note");
+            Console.WriteLine(" 4) Return");
 
             Console.Write("> ");
             string choice = Console.ReadLine();
@@ -36,9 +41,11 @@ namespace TabloidCLI.UserInterfaceManagers
                 case "2":
                     AddNote();
                     return this;
-                    case "3":
+                case "3":
                     Remove(); 
                     return this;
+                case "4":
+                    return _parentUI;
                 default:
                     Console.WriteLine("Invalid Selection");
                     return this;
@@ -56,18 +63,33 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void  AddNote()
         {
+            Console.WriteLine("New Note-----");
+            Note note = new Note();
+
             Console.WriteLine("Enter the Title: ");
             string Title = Console.ReadLine();
 
             Console.WriteLine("Enter your note: ");
             string Content = Console.ReadLine();
 
+            Console.WriteLine("Select a Post");
+            List<Post> posts = _Post.GetAll();
+            foreach (Post p in posts)
+            {
+                Console.WriteLine($"{p.Id} - {p.Title}");
+            }
+            Post post = new Post
+            {
+                Id = int.Parse(Console.ReadLine()),
+            };
+            note.Post = post;
+
             Note newNote = new Note()
             {
                 Title = Title,
                 Content = Content,
                 CreateDateTime = DateTime.Now,
-                Post = _PostIdSelected
+                Post = post
             };
 
             _noteRepository.Insert(newNote);

@@ -77,7 +77,7 @@ namespace TabloidCLI
                     cmd.Parameters.AddWithValue("@Title", note.Title);
                     cmd.Parameters.AddWithValue("@Content", note.Content);
                     cmd.Parameters.AddWithValue("@CreateDateTime", note.CreateDateTime);
-                    cmd.Parameters.AddWithValue("@PostId", note.Post);
+                    cmd.Parameters.AddWithValue("@PostId", note.Post.Id);
                     cmd.ExecuteNonQuery();
                 }
             }
