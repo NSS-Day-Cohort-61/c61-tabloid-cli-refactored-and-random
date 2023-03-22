@@ -57,7 +57,7 @@ namespace TabloidCLI.Repositories
             }
         }
 
-        public Post Get(int id)
+        public Post GetByBlog(int id)
         {
             using (SqlConnection conn = Connection)
             {
@@ -240,6 +240,11 @@ namespace TabloidCLI.Repositories
                     cmd.ExecuteNonQuery();
                 }
             }
+        }
+
+        public Post Get(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
