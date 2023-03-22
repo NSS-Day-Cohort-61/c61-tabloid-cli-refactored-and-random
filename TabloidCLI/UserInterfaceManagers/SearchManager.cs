@@ -44,6 +44,23 @@ namespace TabloidCLI.UserInterfaceManagers
             }
         }
 
+        private void SearchBlogs()
+        {
+            Console.Write("Tag> ");
+            string tagname = Console.ReadLine();
+
+            SearchResults<Author> results = _tagRepository.SearchBlogs(tagName);
+
+            if (results.NoResultsFound)
+            {
+                Console.WriteLine($"No results for {tagName}");
+            }
+            else
+            {
+                results.Display();
+            }
+
+        }
         private void SearchAuthors()
         {
             Console.Write("Tag> ");
