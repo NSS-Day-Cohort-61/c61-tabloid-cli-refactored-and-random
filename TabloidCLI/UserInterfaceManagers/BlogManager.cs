@@ -13,6 +13,7 @@ namespace TabloidCLI.UserInterfaceManagers
 
         public IUserInterfaceManager Execute()
         {
+            return this;
         }
 
     }
