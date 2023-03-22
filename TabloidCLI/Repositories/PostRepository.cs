@@ -14,7 +14,7 @@ namespace TabloidCLI.Repositories
             throw new NotImplementedException();
         }
 
-        public Post Get(int id)
+        public Post GetByBlog(int id)
         {
             throw new NotImplementedException();
         }
@@ -88,6 +88,11 @@ namespace TabloidCLI.Repositories
         }
 
         public void Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Post Get(int id)
         {
             throw new NotImplementedException();
         }
