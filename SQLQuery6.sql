@@ -1,2 +1,2 @@
 ﻿SELECT *
-FROM Post
+FROM Note

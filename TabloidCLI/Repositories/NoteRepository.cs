@@ -12,14 +12,13 @@ namespace TabloidCLI
 
         public void Delete(int id)
         {
-            using(SqlConnection conn = Connection);
+            using(SqlConnection conn = Connection)
             {
-                Connection.Open();
-                using (SqlCommand cmd = Connection.CreateCommand())
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"DELETE FROM Note WHERE Id = @id";
                     cmd.Parameters.AddWithValue("@id", id);
-
                     cmd.ExecuteNonQuery();
                 }
             }

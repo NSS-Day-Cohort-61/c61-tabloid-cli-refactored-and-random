@@ -55,9 +55,9 @@ namespace TabloidCLI.UserInterfaceManagers
         private void  List()
         {
             List<Note> notes = _noteRepository.GetAll();
-            foreach (Note note in notes)
+            foreach (Note n in notes)
             {
-                Console.WriteLine(note);
+                Console.WriteLine($"{n.Title} created on:{n.CreateDateTime}");
             }
         }
 
@@ -72,15 +72,9 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine("Enter your note: ");
             string Content = Console.ReadLine();
 
-            Console.WriteLine("Select a Post");
-            List<Post> posts = _Post.GetAll();
-            foreach (Post p in posts)
-            {
-                Console.WriteLine($"{p.Id} - {p.Title}");
-            }
             Post post = new Post
             {
-                Id = int.Parse(Console.ReadLine()),
+                Id = _postId
             };
             note.Post = post;
 
