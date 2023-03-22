@@ -94,6 +94,11 @@ namespace TabloidCLI
             }
         }
 
+        public SearchBlogs<Blog> SearchBlogs(string tagName)
+        {
+
+        }
+
         public SearchResults<Author> SearchAuthors(string tagName)
         {
             using (SqlConnection conn = Connection)
