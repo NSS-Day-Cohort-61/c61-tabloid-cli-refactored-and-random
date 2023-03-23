@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -68,7 +69,7 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine($"Url: {post.Url}");
             Console.WriteLine($"Publish Date: {post.PublishDateTime}");
             Console.WriteLine($"Tags: ");
-         foreach (Tag t in tags)
+            foreach (Tag t in tags)
             {
                 Console.WriteLine($"{t.Name}");
             }
@@ -76,16 +77,31 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine();
         }
 
-       
+        
 
         private void AddTag()
         {
-            
+            Console.WriteLine("Select a tag to add:");
+            List<Tag> tags = _tagRepository.GetAll();
+            foreach (Tag t in tags)
+            {
+                Console.WriteLine($"{t.Id} - {t.Name}");
+            }
+            int selectedId = int.Parse(Console.ReadLine());
+            _postRepository.AddTagtoPost(selectedId, _postId);
         }
 
         private void RemoveTag()
         {
-            
+            List<Tag> tags = _tagRepository.GetbyPost(_postId);
+            Console.WriteLine("Select a tag to remove:");
+            Console.WriteLine($"Tags: ");
+            foreach (Tag t in tags)
+            {
+                Console.WriteLine($"{t.Id} - {t.Name}");
+            }
+            int selectedId = int.Parse(Console.ReadLine());
+            _postRepository.RemoveTagfromPost(selectedId, _postId);
         }
     }
 }
